@@ -1,0 +1,41 @@
+import random 
+#DICTIONNAIRE AVEC MOTS POSSIBLES
+word_list = ['comme','entre','cette','notes','trois','place','année','après','aussi','alors','ainsi','ville','monde','titre','avant','décès','série','avoir','temps','début','autre','suite','faire','cours','leurs','album','ligne','moins','homme','forme','grand','selon','genre','situé','ayant','coupe','scène','nommé','celle','celui','sorti','ordre','armée','reste','droit','point','femme','siège','effet','toute','maire','poste','corps','parti','roman','école','connu','porte','image','ouest','livre','style','union','terme','petit','ligue','passe','frère','durée','parmi','objet','cadre','musée','cause','comte','quand','seule','terre','vidéo','donné','libre','russe','stade','rouge','poids','total','label','blanc','score','saint','large','salle','étude','bande','assez','aucun','musée','belge','signe','pièce','prise','force','passé','hiver','sujet','fondé','issue','choix','santé','accès','amour','carte','basse','coeur','moyen','unité','revue','heure','piano','soeur','enfin','phase']
+#CHOIX D'UN MOT ALEATOIRE DU DICTIONNAIRE
+answer = random.choice(word_list)
+
+#MOT UTILISATEUR
+def input_guess():
+    my_input = input("ESSAI "+str(i+1)+"?\n")
+    if my_input == None: return "     " #SI L'UTILISATEUR NE DONNE AUCUN MOT
+    elif len(my_input) != 5: return my_input[0:5] #PRENDS UNIQUEMENT LES 5 PREMIERES LETTRES
+    else: return my_input.lower() #CONVERTIT LE MOT EN MINUSCULE (AFIN D'EVITER DES ERREURS)
+
+#VERIFICATION DU MOT
+def check_guess(my_input, answer):
+    a = 0 
+    verify = []
+    for i in my_input:
+        if i == answer[a]:
+            verify.append("🟩")
+        elif i in answer:
+            verify.append("🟧")
+        else: 
+            verify.append("🟥")
+        a+=1 #INCREMENTATION DE A
+        if a == 5:
+            print (str(verify))
+
+    
+#WORDLE
+for i in range(6):
+    if i == 0:
+        print("WORDLE FR - TROUVEZ LE MOT DE 5 LETTRES EN 6 ESSAIS \n")
+    my_input = input_guess()
+    check_guess(my_input, answer)
+    if my_input == answer:
+        print("Bien joué !!")
+        break
+else: #SI TOUS LES ESSAIS SONT UTILISES
+    print("Dommage, la réponse était : " + answer)
+
